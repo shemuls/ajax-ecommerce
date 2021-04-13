@@ -7,6 +7,9 @@
   font-family: "Droid Sans", sans-serif;
   outline: none;
 }
+a {
+  text-decoration: none;
+}
 ::-webkit-scrollbar {
   background: transparent;
   width: 5px;
@@ -26,6 +29,7 @@ body {
   transition: 0.3s;
   margin-left: 290px;
   background-color: #2a2b3d;
+  padding: 30px 0;
 }
 .margin {
   margin-left: 0 !important;
@@ -232,6 +236,7 @@ body {
   padding: 15px;
   overflow: hidden;
   color: #bbb;
+  box-shadow: 0px ​0px 26px -25px #222;
 }
 
 /* Start statistics */
@@ -665,4 +670,20 @@ body {
   .login-regestration .container .user .formBx {
     width: 100%;
   }
+}
+
+/* --- Product table Design---- */
+.all-product-table #sadjkfh tr {
+  border: none !important;
+}
+.product_add_new_form form#product_add_new_form input,
+.product_add_new_form form#product_add_new_form select,
+.product_add_new_form form#product_add_new_form textarea {
+  margin-bottom: 15px;
+  margin-top: 6px;
+  background-color: #ced4da;
+  padding: 10px 10px;
+}
+.product_add_new_form form#product_add_new_form .form_sub_btn {
+  display: block;
 }

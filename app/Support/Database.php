@@ -1,6 +1,7 @@
 <?php
-
 namespace  App\Support;
+require_once "../config.php";
+
 
 use mysqli;
 
@@ -12,10 +13,10 @@ abstract class Database
 {
 
     // Attributes
-    private $host = "localhost";
-    private $user = "root";
-    private $pass = "";
-    private $db   = "e_commerce";
+    private $host = HOST;
+    private $user = USER;
+    private $pass = PASSWORD;
+    private $db   = DATABASE;
 
     private $connection;
 
@@ -93,4 +94,45 @@ abstract class Database
     {
         $this->connection()->query("DELETE FROM $table WHERE id=$id");
     }
+
+    /**
+     * file uplode system
+     */
+    function fileUp($file, $location, $format=['png','jpg','gif'])
+    {
+        
+        $file_name = $file['name'];
+        $file_tmp_name = $file['tmp_name'];
+        //without photo upload
+        if(empty($file_name)){
+            $unicname = "defult.png";
+            $status = "without";
+        }else{
+            //file extenation
+            $file_arr = explode('.', $file_name);
+            $ext = strtolower(end($file_arr));
+
+            //unice name
+            $unicname = md5(time().rand()).".".$ext;
+                
+
+
+            //send file to folder
+            if (in_array($ext,$format)) {
+
+                move_uploaded_file($file_tmp_name,$location.$unicname);
+                $status = 'with';
+            }else{
+                $status = 'Error';
+            }
+        }
+        
+        return[
+            'file_name' => $unicname,
+            'status' => $status
+        ];
+
+    }
+
+
 }

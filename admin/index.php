@@ -1,3 +1,9 @@
+<?php 
+
+    require_once "../vendor/autoload.php";
+
+?>
+
 <!DOCTYPE html>
 <html class="no-js" lang="">
   <head>
