@@ -1,6 +1,6 @@
 ## eCommerce Project
 
-This a mini eCommerce for a research
+This is a mini eCommerce for research
 
 ### Language List
 
