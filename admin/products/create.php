@@ -69,11 +69,28 @@
                 <div class="form-group">
 
                     <img style="display: block; width: 200px" id="img_preload_product" src="" alt="">
+                    <div style="
+                        margin-top: 20px;
+                        width: 100%;
+                        height: 10px;
+                        position: relative;
+                        background-color: #ddd;
+                        display: none;
+                    " id="myProgress">
+                        <div style="
+                            background-color: green;
+                            width: 10px;
+                            height: 10px;
+                            position: absolute;
+                        " id="myBar"></div>
+                    </div>
 
                     <label for="productimgs">
-                        <img style="height: 60px; cursor: pointer;" src="../admin/assets/img/image-uploader-icon.png" alt="">
+                        <img id="imgUploader_icon" style="height: 60px; cursor: pointer;" src="../admin/assets/img/image-uploader-icon.png" alt="">
+                        <a style="margin: 10px 0px 10px 0px;display:none;" id="removeLoadedPhoto"  class="btn btn-danger btn-sm" href="#">Remove Photo</a>
                     </label>
                     <input style="display: none;" name="productimgs" id="productimgs"  class="form-control" type="file">
+                    
                     
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg w-100 mt-2">Sign in</button>

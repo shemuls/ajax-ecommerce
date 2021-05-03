@@ -58,15 +58,32 @@
     $(document).on("click", "a#deleteProduct", function (e) {
       e.preventDefault();
       let deleteId = $(this).attr("delete-id");
-      $.ajax({
-        url: "products/inc/ajax/delete_product.php",
-        method: "POST",
-        data: {
-          id: deleteId,
-        },
-        success: function (data) {
-          allProductShow();
-        },
+
+      swal({
+        title: "Are you sure?",
+        text:
+          "Once deleted, you will not be able to recover this imaginary file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          swal("Poof! Your imaginary file has been deleted!", {
+            icon: "success",
+          });
+          $.ajax({
+            url: "products/inc/ajax/delete_product.php",
+            method: "POST",
+            data: {
+              id: deleteId,
+            },
+            success: function (data) {
+              allProductShow();
+            },
+          });
+        } else {
+          swal("Your imaginary file is safe!");
+        }
       });
     });
 
@@ -129,13 +146,37 @@
     "form#product_add_new_form input#productimgs",
     function (e) {
       let fileUrl = URL.createObjectURL(e.target.files[0]);
+      $("#myProgress").css("display", "block");
+      $("img#imgUploader_icon").css("display", "none");
 
-      $("form#product_add_new_form img#img_preload_product").attr(
-        "src",
-        fileUrl
-      );
+      var elem = document.getElementById("myBar");
+      var width = 0;
+      var id = setInterval(frame, 10);
+      function frame() {
+        if (width == 100) {
+          clearInterval(id);
+          $("form#product_add_new_form img#img_preload_product").attr(
+            "src",
+            fileUrl
+          );
+          $("#myProgress").css("display", "none");
+          $("a#removeLoadedPhoto").css("display", "inline-block");
+          $("a#removeLoadedPhoto").css("display", "inline-block");
+        } else {
+          width++;
+          elem.style.width = width + "%";
+        }
+      }
     }
   );
+
+  // removeLoadedPhoto by click
+  $(document).on("click", "a#removeLoadedPhoto", function (e) {
+    e.preventDefault();
+    $("img#img_preload_product").attr("src", "");
+    $("img#imgUploader_icon").css("display", "block");
+    $("a#removeLoadedPhoto").css("display", "none");
+  });
 
   // end
 })(jQuery);
