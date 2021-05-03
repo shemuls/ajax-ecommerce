@@ -17,10 +17,10 @@
       ></i>
     </div>
 
-    <ul class="categories">
+    <ul  class="categories">
       <li>
         <i class="fa fa-home fa-fw" aria-hidden="true"></i>
-        <a href="#"> Product</a>
+        <a id="product_nav_" href="#"> Product</a>
         <ul class="side-nav-dropdown">
           <li><a id="allProducts_nav_btn" href="#">All Products</a></li>
           <li><a id="addNewProduct_nav_btn" href="#">Add New</a></li>

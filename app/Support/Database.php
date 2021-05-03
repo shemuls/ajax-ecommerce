@@ -1,6 +1,7 @@
 <?php
+
 namespace  App\Support;
-require_once "../config.php";
+
 
 
 use mysqli;
@@ -13,10 +14,10 @@ abstract class Database
 {
 
     // Attributes
-    private $host = HOST;
-    private $user = USER;
-    private $pass = PASSWORD;
-    private $db   = DATABASE;
+    private $host = 'localhost';
+    private $user = 'root';
+    private $pass = '';
+    private $db   = 'e_commerce';
 
     private $connection;
 
@@ -81,8 +82,21 @@ abstract class Database
      * Update any data from any table
      * @param $sql
      */
-    protected function update($sql)
+    protected function update(string $table, $id, array $data)
     {
+
+        $set = '';
+        $x = 1;
+
+        foreach($data as $name => $value) {
+            $set .= "{$name} = \"{$value}\"";
+            if($x < count($data)) {
+                $set .= ',';
+            }
+            $x++;
+        }
+
+        $this->connection()->query("UPDATE  $table SET $set WHERE id='$id'");
     }
 
     /**
